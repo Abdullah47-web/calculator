@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        height: 100vh;
+        display: grid;
+        place-items: center;
+    }
+    .calculator{
+        border: 2px solid #000;
+        border-radius: 5px;
+        display: grid;
+        gap: 10px;
+    }
+    .calculator > .display > input{
+        height: 30px;
+        padding-left: 5px;
+        outline: none;
+    }
+    .btns{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 5px;
+    }
+    .btns > button{
+        padding: 8px 4px;
+        cursor: pointer;
+        
+    }
+</style>
+<body>
+
+
+    <div class="calculator">
+<div class="display">
+    <input type="text" disabled id="input">
+</div>
+<div class="btns">
+    <button onclick="clearDisplay()">AC</button>
+    <button onclick="deleteOne()">del</button>
+    <button  onclick="passValue('.')">.</button>
+    <button  onclick="passValue('/')">/</button>
+    <button  onclick="passValue('1')">1</button>
+    <button  onclick="passValue('2')">2</button>
+    <button  onclick="passValue('3')">3</button>
+    <button  onclick="passValue('+')">+</button>
+
+    <button  onclick="passValue('4')">4</button>
+    <button  onclick="passValue('5')">5</button>
+    <button  onclick="passValue('6')">6</button>
+    <button  onclick="passValue('7')">7</button>
+
+    <button  onclick="passValue('8')">8</button>
+    <button  onclick="passValue('9')">9</button>
+    
+    <button  onclick="passValue('0')">0</button>
+    <button  onclick="passValue('-')">-</button>
+    
+    <button  onclick="calculate()">=</button>
+    <button  onclick="passValue('*')" style="padding-left: 0px;">x</button>
+ 
+
+
+</div>
+</div>
+
+
+
+<script>
+    let input = document.getElementById("input");
+
+    function passValue(displayValue){
+        input.value +=displayValue
+    }
+
+    function calculate(){
+        try{
+            input.value = eval(input.value)
+        }catch(e){
+            alert("invalid syntax")
+            input.value="";
+        }
+    }
+
+    function clearDisplay(){
+        input.value = ""
+    }
+    function deleteOne(){
+        input.value = input.value.slice(0,-1)
+    }
+</script>
+    
+</body>
+</html>
